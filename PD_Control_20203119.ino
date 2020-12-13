@@ -13,25 +13,21 @@
 // [3108] 0~1 사이의 값
 
 // Servo range
-#define _DUTY_MIN 1330
-#define _DUTY_NEU 1180
-#define _DUTY_MAX 1030
-
+#define _DUTY_MIN 1075
+#define _DUTY_NEU 875
+#define _DUTY_MAX 675
 
 // Servo speed control
-#define _SERVO_ANGLE 27.0
-#define _SERVO_SPEED 400.0
-
+#define _SERVO_ANGLE 36
+#define _SERVO_SPEED 87
 // Event periods
 #define _INTERVAL_DIST 20
 #define _INTERVAL_SERVO 20
 #define _INTERVAL_SERIAL 100
 
 // PID parameters
-#define _KP 0.01
-#define _KD 1.3
-
-
+#define _KP 1.19
+#define _KD 85.5
 #define a 70
 #define b 370
 //////////////////////
@@ -77,7 +73,7 @@ void setup() {
   delay(5000);
 
   // convert angle speed into duty change per interval.
-  duty_chg_per_interval = (_DUTY_MIN - _DUTY_MAX) * (_SERVO_SPEED / _SERVO_ANGLE ) * (_INTERVAL_SERVO / 1000.0);
+  duty_chg_per_interval = (_DUTY_MIN - _DUTY_MAX) * (_SERVO_SPEED / _SERVO_ANGLE*2 ) * (_INTERVAL_SERVO / 1000.0);
 }
 
 
@@ -119,8 +115,7 @@ void loop() {
     iterm = 0;
     dterm = _KD * (error_curr - error_prev);
     control = pterm + iterm + dterm;
-    duty_target = _DUTY_NEU + control * ((control > 0) ? (_DUTY_MIN - _DUTY_NEU) : (_DUTY_NEU - _DUTY_MAX))  * _SERVO_ANGLE / 180;
-
+    duty_target = _DUTY_NEU + control;
 
 
     // keep duty_target value within the range of [_DUTY_MIN, _DUTY_MAX]
