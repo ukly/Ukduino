@@ -82,7 +82,7 @@ void setup() {
 
   //reset iterm
   dterm = pterm = 0;
-  iterm = 3;
+  iterm = 3;   //오버슈팅을 잡아보려 iterm값을 0이 아닌 값으로 대입 시도했으나 실패, 그러나 오버슈팅 이후에 근접 정지를 할때 iterm의 초기값을 높이고 KI를 줄이는 방식이 도움이 되어 
  
 
   // convert angle speed into duty change per interval.
