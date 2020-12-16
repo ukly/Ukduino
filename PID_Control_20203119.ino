@@ -63,8 +63,6 @@ const float coE[] = {-0.0000272, 0.0187197, -2.7226322, 246.3408758};
 
 void setup() {
   // initialize GPIO pins for LED and attach servo
-  //myservo.attach(PIN_SERVO); // attach servo
-  //myservo.writeMicroseconds(_DUTY_NEU);
 
   last_sampling_time_dist, last_sampling_time_servo, last_sampling_time_serial = millis();
   
@@ -76,7 +74,7 @@ void setup() {
   Serial.begin(57600);
 
   // move servo to neutral position
-  //myservo.writeMicroseconds(_DUTY_NEU);
+  
   duty_curr = _DUTY_NEU;
   duty_target = _DUTY_NEU;
 
@@ -162,7 +160,6 @@ void loop() {
     // update servo position
     myservo.writeMicroseconds(duty_curr);
   }
-  //myservo.writeMicroseconds(_DUTY_NEU);
 
   if (event_serial) {
     event_serial = false;
